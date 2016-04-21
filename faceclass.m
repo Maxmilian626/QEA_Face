@@ -10,7 +10,7 @@ image3 = classdata(:,:,120);
 image4 = classdata(:,:,145);
 image5 = classdata(:,:,175);
 
-[m,n] = size(image1)
+[m,n] = size(image1);
 
 input = reshape(input, m*n,1);
 
@@ -40,9 +40,20 @@ At = transpose(A);
 
 cov = At*A;
 [vec,eigen] = eig(cov);
-
+% vec(:,1)
 
 newvec = A * vec;
-size(newvec)
-newvec= 
+
+for row = 1:92160
+    for column = 1:5
+    newvec(row, column) = norm(newvec(row, column));
+    end
+end
+
+newvec = newvec + repmat(mean_pixelsA,1,5);
+% size(newvec)
+% size(repmat(mean_pixelsA,1,5))
+
+image1 = reshape(newvec(:,1), m,n);
+imshow(image1)
 end
