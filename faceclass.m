@@ -2,8 +2,6 @@ function res = faceclass()
 
 load classdata.mat;
 
-input = classdata(:,:,1);
-
 image1 = classdata(:,:,1);
 image2 = classdata(:,:,90);
 image3 = classdata(:,:,120);
@@ -11,8 +9,6 @@ image4 = classdata(:,:,145);
 image5 = classdata(:,:,175);
 
 [m,n] = size(image1);
-
-input = reshape(input, m*n,1);
 
 image1 = reshape(image1, m*n,1);
 image2 = reshape(image2, m*n,1);
@@ -50,10 +46,40 @@ for row = 1:92160
     end
 end
 
-newvec = newvec + repmat(mean_pixelsA,1,5);
-% size(newvec)
-% size(repmat(mean_pixelsA,1,5))
+eigfaces = newvec + repmat(mean_pixelsA,1,5);
 
-image1 = reshape(newvec(:,1), m,n);
-imshow(image1)
+image1 = reshape(eigfaces(:,1), m,n);
+% imshow(image1)
+
+%%
+%Image Recognition
+
+input = classdata(:,:,90);
+input = reshape(input, m*n,1);
+
+difference = input - mean_pixelsA;
+
+% for column = 1:5
+    
+% weight = transpose(newvec) * repmat(difference,1,5) * newvec
+size(newvec)
+size(difference)
+
+% M = min(newvec,[],1)
+% % size (difference)
+% % size(newface)
+% 
+% %Finding Euclidean distance
+% distance = abs(newface - repmat(difference,1,5));
+% threshhold = 1e-6;
+
+% size(distance)
+% M = min(distance,[],1)
+% 
+% maxrow = size(M');
+% for column = 1:maxrow(1)
+%     if M(column) <= threshhold
+%         column
+%     end
+% end
 end
