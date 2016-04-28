@@ -1,6 +1,7 @@
 function res = faceclass()
 tic
 load classdata.mat;
+load testdata.mat;
 %%% Import set of faces, reshape/size
 %Test_set = [classdata(:,:,1), classdata(:,:,90), classdata(:,:,120), classdata(:,:,145), classdata(:,:,175)];
 
@@ -29,7 +30,7 @@ load classdata.mat;
 %Concatenated horizontally into matrix A
 % TestFaces = [image1 image2 image3 image4 image5];
 
-TestFaces = []
+TestFaces = [];
 
 for imagenum = 1:335
     image = classdata(:,:,imagenum);
@@ -40,8 +41,12 @@ end
 
 
 %%% Image Recognition input
-input = classdata(:,:,336);
+%input = imread('faceimage_sungwooPark_00.png');
+input = imread('naruto.png');
+input = im2double(input(:,:,1));
+%input = classdata(:,:,336);
 imshow(input)
+figure
 [column,row] = size(input);
 input = reshape(input, column*row,1);
 

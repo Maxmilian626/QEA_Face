@@ -22,7 +22,7 @@ load classdata.mat;
 
 TestFaces = []
 
-for imagenum = 1:343
+for imagenum = 1:335
     image = classdata(:,:,imagenum);
     [m,n] = size(image);
     image = reshape(image, m*n,1);
