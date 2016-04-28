@@ -42,7 +42,7 @@ end
 
 %%% Image Recognition input
 %input = imread('faceimage_sungwooPark_00.png');
-input = imread('naruto.png');
+input = imread('saber.jpg');
 input = im2double(input(:,:,1));
 %input = classdata(:,:,336);
 imshow(input)
