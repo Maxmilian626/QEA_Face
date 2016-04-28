@@ -1,7 +1,8 @@
 function res = faceclass()
+tic;
 
 load classdata.mat;
-% 
+
 % image1 = classdata(:,:,1);
 % image2 = classdata(:,:,90);
 % image3 = classdata(:,:,120);
@@ -20,9 +21,9 @@ load classdata.mat;
 %Concatenated horizontally into matrix A
 % TestFaces = [image1 image2 image3 image4 image5];
 
-TestFaces = []
+TestFaces = [];
 
-for imagenum = 1:343
+for imagenum = 1:335
     image = classdata(:,:,imagenum);
     [m,n] = size(image);
     image = reshape(image, m*n,1);
@@ -68,13 +69,16 @@ eigfaces = newvec + repmat(mean_pixels,1,numpics);
 % TestFaces;
 
 testweight = transpose(normA) * eigfaces;
-size(TestFaces)
-% size()
+% size(TestFaces)
 
 %%
 % Image Recognition
 
-input = classdata(:,:,344);
+% input = classdata(:,:,336);
+% input = imread('faceimage_shenemanTaylor_00.png');
+% input = imread('faceimage_lydiaZuehsow_00.png');
+input = imread('faceimage_willemThorbecke_00.png'); %Actually Ruby
+input = im2double(input(:,:,1));
 imshow(input)
 input = reshape(input, m*n,1);
 
@@ -93,4 +97,7 @@ threshhold = 500;
 
 match = reshape(TestFaces(:,I(1)),m,n);
 imshow(match)
+
+toc;
+elapsedTime = toc
 end
